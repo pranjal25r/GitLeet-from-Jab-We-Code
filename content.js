@@ -1,16 +1,20 @@
-function checkSubmission() {
-    const result = document.querySelector('.text-green-500');
-
+function observeAccepted() {
+  const observer = new MutationObserver(() => {
+    const result = document.querySelector('[data-e2e-locator="submission-result"]');
     if (result && result.innerText.includes("Accepted")) {
-        const problemTitle = document.querySelector('div[data-cy="question-title"]').innerText;
-        const code = document.querySelector('.view-lines').innerText;
+      const code = document.querySelector(".view-lines")?.innerText;
+      const title = document.querySelector("h1")?.innerText || "Solution";
 
+      if (code) {
         chrome.runtime.sendMessage({
-            type: "ACCEPTED",
-            title: problemTitle,
-            code: code
+          type: "ACCEPTED_SUBMISSION",
+          payload: { code, title, language: "js" }
         });
+      }
     }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 }
 
-setInterval(checkSubmission, 5000);
+observeAccepted();

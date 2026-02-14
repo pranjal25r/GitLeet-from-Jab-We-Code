@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "LeetCode to GitHub",
+  "name": "GitLeet From Jab we Code",
   "version": "1.0",
   "description": "Push accepted LeetCode solutions to GitHub automatically",
   "permissions": ["storage", "activeTab", "scripting"],
