@@ -47,10 +47,14 @@ function getCodeFromMonaco() {
 
 function getProblemTitle() {
 
-  const titleLink = document.querySelector('a[href^="/problems/"]');
+  const links = document.querySelectorAll("a");
 
-  if (titleLink) {
-    return titleLink.innerText.trim();
+  for (let link of links) {
+    const text = link.innerText.trim();
+
+    if (/^\d+\.\s+/.test(text)) {
+      return text;
+    }
   }
 
   return "Solution";
