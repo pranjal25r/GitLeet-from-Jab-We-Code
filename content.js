@@ -45,6 +45,18 @@ function getCodeFromMonaco() {
   return "";
 }
 
+function getProblemTitle() {
+
+  const titleLink = document.querySelector('a[href^="/problems/"]');
+
+  if (titleLink) {
+    return titleLink.innerText.trim();
+  }
+
+  return "Solution";
+}
+
+
 
 function tryPush() {
 
@@ -56,10 +68,7 @@ function tryPush() {
 
   setTimeout(() => {
 
-    const titleElement = document.querySelector('[data-cy="question-title"]');
-    const title = titleElement
-      ? titleElement.innerText.trim()
-      : "Solution";
+    const title = getProblemTitle();
 
     const code = getCodeFromMonaco();
 

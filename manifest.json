@@ -14,8 +14,7 @@
   "content_scripts": [
     {
       "matches": ["https://leetcode.com/*"],
-      "js": ["content.js"],
-      "all_frames": true
+      "js": ["content.js"]
     }
   ],
   "action": {
