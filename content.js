@@ -5,19 +5,34 @@ let alreadySent = false;
 function detectLanguage() {
   let language = "txt";
 
-  const langButton = document.querySelector('[data-cy="lang-select"]');
+  // Find button that contains known language text
+  const buttons = document.querySelectorAll("button");
 
-  if (langButton) {
-    const langText = langButton.innerText.toLowerCase();
+  for (let btn of buttons) {
+    const text = btn.innerText.trim().toLowerCase();
 
-    if (langText.includes("c++")) language = "cpp";
-    else if (langText.includes("java")) language = "java";
-    else if (langText.includes("python")) language = "py";
-    else if (langText.includes("javascript")) language = "js";
+    if (text.includes("c++")) {
+      language = "cpp";
+      break;
+    }
+    if (text.includes("java")) {
+      language = "java";
+      break;
+    }
+    if (text.includes("python")) {
+      language = "py";
+      break;
+    }
+    if (text.includes("javascript")) {
+      language = "js";
+      break;
+    }
   }
 
+  console.log("Detected language:", language);
   return language;
 }
+
 
 function getCodeFromMonaco() {
 
