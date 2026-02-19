@@ -36,13 +36,19 @@ function detectLanguage() {
 
 function getCodeFromMonaco() {
 
-  const codeElement = document.querySelector(".monaco-editor .view-lines");
+  const editor = document.querySelector(".monaco-editor");
 
-  if (codeElement) {
-    return codeElement.innerText;
-  }
+  if (!editor) return "";
 
-  return "";
+  const lines = editor.querySelectorAll(".view-line");
+
+  let code = "";
+
+  lines.forEach(line => {
+    code += line.innerText + "\n";
+  });
+
+  return code;
 }
 
 function getProblemTitle() {
